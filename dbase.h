@@ -10,6 +10,10 @@ using namespace std;
 
 class Dbase
 {
+    vector<Admins> adm_rec ;
+    vector<Members> mem_rec ;
+    vector<Books> book_rec ;
+
 public:
 
     vector<Books> books ;

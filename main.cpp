@@ -7,6 +7,7 @@ int main()
 {
     Dbase library ;
     library.openLibrary();
-    cout << "Hello World!" << endl;
+    library.closeLibrary();
+
     return 0;
 }

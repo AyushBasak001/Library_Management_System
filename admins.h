@@ -6,7 +6,7 @@
 using namespace std;
 
 class Admins
-{  // declare data members as public after checking link
+{  // declare data members as private after checking link
 public:
     int adminID ;
     string name ;
