@@ -8,13 +8,13 @@ using namespace std;
 
 class Members
 {
+public:
     int memberID ;
     string name ;
     string password ;
     vector<int> issuedBooks ;
 
-public:
-    Members();
+    Members(int id, const string& name, const string& pass);
     void login() ;
     void issueBook() ;
     void returnBook() ;

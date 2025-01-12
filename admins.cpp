@@ -1,6 +1,7 @@
 #include "admins.h"
 
-Admins::Admins() {}
+Admins::Admins(int id, const string& n, const string& pass)
+    : adminID(id), name(n), password(pass) {}
 
 void Admins::login() {}
 

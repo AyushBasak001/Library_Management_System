@@ -1,6 +1,7 @@
 #include "members.h"
 
-Members::Members() {}
+Members::Members(int id, const string& n, const string& pass)
+    : memberID(id), name(n), password(pass) {}
 
 void Members::login() {}
 void Members::issueBook() {}

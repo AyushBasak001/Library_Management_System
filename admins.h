@@ -6,13 +6,13 @@
 using namespace std;
 
 class Admins
-{
+{  // declare data members as public after checking link
+public:
     int adminID ;
     string name ;
     string password ;
 
-public:
-    Admins();
+    Admins(int id, const string& user, const string& pass);
     void login() ;
 
     void addBook() ;
