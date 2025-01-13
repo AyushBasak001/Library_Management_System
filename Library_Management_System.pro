@@ -7,6 +7,7 @@ SOURCES += \
         admins.cpp \
         books.cpp \
         dbase.cpp \
+        issuedbooks.cpp \
         main.cpp \
         members.cpp
 
@@ -17,4 +18,5 @@ HEADERS += \
     admins.h \
     books.h \
     dbase.h \
+    issuedbooks.h \
     members.h

@@ -15,9 +15,6 @@ public:
     int issued ;
 
     Books(int id, const string& title, const string& author, int quantity, int issued);
-    bool isAvailable() ;
-    void issueBook() ;
-    void returnBook() ;
 };
 
 #endif // BOOKS_H

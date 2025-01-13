@@ -55,11 +55,13 @@ OBJECTS_DIR   = ./
 SOURCES       = ../../admins.cpp \
 		../../books.cpp \
 		../../dbase.cpp \
+		../../issuedbooks.cpp \
 		../../main.cpp \
 		../../members.cpp 
 OBJECTS       = admins.o \
 		books.o \
 		dbase.o \
+		issuedbooks.o \
 		main.o \
 		members.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -136,9 +138,11 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../../../../Library_Management_System.pro admins.h \
 		books.h \
 		dbase.h \
+		issuedbooks.h \
 		members.h ../../admins.cpp \
 		../../books.cpp \
 		../../dbase.cpp \
+		../../issuedbooks.cpp \
 		../../main.cpp \
 		../../members.cpp
 QMAKE_TARGET  = Library_Management_System
@@ -343,7 +347,8 @@ compiler_clean:
 admins.o: ../../admins.cpp ../../admins.h \
 		../../dbase.h \
 		../../books.h \
-		../../members.h
+		../../members.h \
+		../../issuedbooks.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o admins.o ../../admins.cpp
 
 books.o: ../../books.cpp ../../books.h
@@ -352,19 +357,25 @@ books.o: ../../books.cpp ../../books.h
 dbase.o: ../../dbase.cpp ../../dbase.h \
 		../../books.h \
 		../../members.h \
-		../../admins.h
+		../../admins.h \
+		../../issuedbooks.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dbase.o ../../dbase.cpp
+
+issuedbooks.o: ../../issuedbooks.cpp ../../issuedbooks.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o issuedbooks.o ../../issuedbooks.cpp
 
 main.o: ../../main.cpp ../../dbase.h \
 		../../books.h \
 		../../members.h \
-		../../admins.h
+		../../admins.h \
+		../../issuedbooks.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 members.o: ../../members.cpp ../../members.h \
 		../../dbase.h \
 		../../books.h \
-		../../admins.h
+		../../admins.h \
+		../../issuedbooks.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o members.o ../../members.cpp
 
 ####### Install

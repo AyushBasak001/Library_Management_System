@@ -7,6 +7,7 @@ using namespace std;
 vector<Admins> adm_rec ;
 vector<Members> mem_rec ;
 vector<Books> book_rec ;
+vector<IssuedBooks> isu_rec ;
 
 Dbase::Dbase() {}
 void Dbase::openLibrary()
@@ -98,6 +99,24 @@ void Dbase::loadData()
     }
     sqlite3_finalize(stmt);
 
+
+    const char* isu_query = "SELECT member_id, book_id FROM issued_books";
+    if (sqlite3_prepare_v2(db, isu_query, -1, &stmt, nullptr) == SQLITE_OK)
+    {
+        isu_rec.clear();
+        while (sqlite3_step(stmt) == SQLITE_ROW)
+        {
+            int m_id = sqlite3_column_int(stmt, 0);
+            int b_id = sqlite3_column_int(stmt, 1);
+            isu_rec.emplace_back(m_id, b_id);
+        }
+    }
+    else
+    {
+        cerr << "Error loading issued books: " << sqlite3_errmsg(db) << endl;
+    }
+    sqlite3_finalize(stmt);
+
     sqlite3_close(db);
 }
 
@@ -112,6 +131,7 @@ void Dbase::saveData() {
     sqlite3_exec(db, "DELETE FROM admins;", nullptr, nullptr, nullptr);
     sqlite3_exec(db, "DELETE FROM books;", nullptr, nullptr, nullptr);
     sqlite3_exec(db, "DELETE FROM members;", nullptr, nullptr, nullptr);
+    sqlite3_exec(db, "DELETE FROM issued_books;", nullptr, nullptr, nullptr);
 
     // Re-insert data from in-memory vectors back into the database
 
@@ -149,6 +169,17 @@ void Dbase::saveData() {
         sqlite3_bind_int(stmt, 1, member.memberID);
         sqlite3_bind_text(stmt, 2, member.name.c_str(), -1, SQLITE_STATIC);
         sqlite3_bind_text(stmt, 3, member.password.c_str(), -1, SQLITE_STATIC);
+        sqlite3_step(stmt);
+        sqlite3_finalize(stmt);
+    }
+
+    // Insert Issued Books
+    for (auto& isb : isu_rec) {
+        sqlite3_stmt* stmt;
+        const char* insert_isb_query = "INSERT INTO issued_books (member_id, book_id) VALUES (?, ?)";
+        sqlite3_prepare_v2(db, insert_isb_query, -1, &stmt, nullptr);
+        sqlite3_bind_int(stmt, 1, isb.member_ID);
+        sqlite3_bind_int(stmt, 2, isb.book_ID);
         sqlite3_step(stmt);
         sqlite3_finalize(stmt);
     }
