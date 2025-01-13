@@ -2,8 +2,11 @@
 #define ADMINS_H
 #include <string>
 #include <iostream>
+#include <vector>
 
 using namespace std;
+
+class Dbase ;
 
 class Admins
 {  // declare data members as private after checking link
@@ -12,8 +15,10 @@ public:
     string name ;
     string password ;
 
-    Admins(int id, const string& user, const string& pass);
-    void login() ;
+    Admins(int id, const string& name, const string& pass);
+    void login(const string& name, const string& pass) ;
+
+    void operations() ;
 
     void addBook() ;
     void removeBook() ;

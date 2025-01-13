@@ -4,6 +4,10 @@
 
 using namespace std;
 
+vector<Admins> adm_rec ;
+vector<Members> mem_rec ;
+vector<Books> book_rec ;
+
 Dbase::Dbase() {}
 void Dbase::openLibrary()
 {
@@ -25,7 +29,8 @@ void Dbase::closeLibrary() {
     cout<<"saved data and closed database !"<<endl ;
 }
 
-void Dbase::loadData() {
+void Dbase::loadData()
+{
     sqlite3 *db;
     sqlite3_stmt *stmt;
     int rc = sqlite3_open("library.db", &db);
@@ -73,38 +78,28 @@ void Dbase::loadData() {
     }
     sqlite3_finalize(stmt);
 
-    cout << "Books:\n";
-    for (const auto& book : book_rec) {
-        cout << "ID: " << book.bookID << ", Title: " << book.title
-             << ", Author: " << book.author
-             << ", Quantity: " << book.quantity
-             << ", Issued: " << book.issued << endl;
-    }
 
     // Load Members
     mem_rec.clear();
     const char* member_query = "SELECT member_id, name, password FROM members";
-    if (sqlite3_prepare_v2(db, member_query, -1, &stmt, nullptr) == SQLITE_OK) {
-        while (sqlite3_step(stmt) == SQLITE_ROW) {
+    if (sqlite3_prepare_v2(db, member_query, -1, &stmt, nullptr) == SQLITE_OK)
+    {
+        while (sqlite3_step(stmt) == SQLITE_ROW)
+        {
             int id = sqlite3_column_int(stmt, 0);
             string name(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)));
             string password(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2)));
             mem_rec.emplace_back(id, name, password);
         }
-    } else {
+    }
+    else
+    {
         cerr << "Error loading members: " << sqlite3_errmsg(db) << endl;
     }
     sqlite3_finalize(stmt);
 
-    cout << "Members:\n";
-    for (const auto& member : mem_rec) {
-        cout << "ID: " << member.memberID << ", Name: " << member.name
-             << ", Password: " << member.password << endl;
-    }
-
     sqlite3_close(db);
 }
-
 
 void Dbase::saveData() {
     sqlite3 *db;

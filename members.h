@@ -6,6 +6,8 @@
 
 using namespace std;
 
+class Dbase ;
+
 class Members
 {
 public:
@@ -15,7 +17,9 @@ public:
     vector<int> issuedBooks ;
 
     Members(int id, const string& name, const string& pass);
-    void login() ;
+    void login(const string& name, const string& pass) ;
+    void operations() ;
+    void listallbooks() ;
     void issueBook() ;
     void returnBook() ;
     void listissuedBooks() ;

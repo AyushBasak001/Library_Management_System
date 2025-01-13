@@ -340,7 +340,10 @@ compiler_clean:
 
 ####### Compile
 
-admins.o: ../../admins.cpp ../../admins.h
+admins.o: ../../admins.cpp ../../admins.h \
+		../../dbase.h \
+		../../books.h \
+		../../members.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o admins.o ../../admins.cpp
 
 books.o: ../../books.cpp ../../books.h
@@ -358,7 +361,10 @@ main.o: ../../main.cpp ../../dbase.h \
 		../../admins.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
-members.o: ../../members.cpp ../../members.h
+members.o: ../../members.cpp ../../members.h \
+		../../dbase.h \
+		../../books.h \
+		../../admins.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o members.o ../../members.cpp
 
 ####### Install

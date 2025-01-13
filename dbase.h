@@ -5,20 +5,16 @@
 
 using namespace std;
 
+extern vector<Admins> adm_rec ;
+extern vector<Members> mem_rec ;
+extern vector<Books> book_rec ;
+
 #ifndef DBASE_H
 #define DBASE_H
 
 class Dbase
 {
-    vector<Admins> adm_rec ;
-    vector<Members> mem_rec ;
-    vector<Books> book_rec ;
-
 public:
-
-    vector<Books> books ;
-    vector<Members> members ;
-    vector<Admins> admins ;
 
     Dbase();
     void openLibrary() ;
@@ -28,5 +24,7 @@ public:
     void saveData() ;
 
 };
+
+
 
 #endif // DBASE_H
