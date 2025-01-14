@@ -53,12 +53,6 @@ void Dbase::loadData()
     }
     sqlite3_finalize(stmt);
 
-    cout << "Admins:\n";
-    for (const auto& admin : adm_rec) {
-        cout << "ID: " << admin.adminID << ", Name: " << admin.name
-             << ", Password: " << admin.password << endl;
-    }
-
     // Load Books
     book_rec.clear();
     const char* book_query = "SELECT book_id, title, author, total_quantity, issued_quantity FROM books";

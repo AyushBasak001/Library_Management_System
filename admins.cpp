@@ -35,7 +35,7 @@ void Admins::operations()
     while(true)
     {
         cout<<"\nWhich operation would you like to perform ? "<<endl ;
-        cout<<"1. Close\n2. Add new Admin\n3. Add new Member\n4. Add new Book\n5. View all Books\n6. View all Members\n7. View all Admins\n8. Update Quantity of a Book\n9. Remove Book\n10.Remove Member\n11.Remove Admin\nEnter Choice : " ;
+        cout<<"1. Close\n2. Add new Book\n3. Add new Member\n4. Add new Admin\n5. View all Books\n6. View all Members\n7. View all Admins\n8. Update Quantity of a Book\n9. Remove Book\n10.Remove Member\n11.Remove Admin\nEnter Choice : " ;
         cin>>choice ;
 
         // Handle invalid input (e.g., letters or special characters)
@@ -48,9 +48,9 @@ void Admins::operations()
         }
 
         if(choice==1) return ;
-        else if(choice==2) addAdmin();
+        else if(choice==2) addBook();
         else if(choice==3) addMember();
-        else if(choice==4) addBook();
+        else if(choice==4) addAdmin();
         else if(choice==5) listallbooks();
         else if(choice==6) listallMembers();
         else if(choice==7) listallAdmins();
@@ -64,7 +64,9 @@ void Admins::operations()
 
 void Admins::addBook()
 {
-    int id=book_rec.back().bookID + 1 ;
+    int id=101 ;
+    if(!book_rec.empty())
+        id=book_rec.back().bookID + 1 ;
     string t,a ;
     int q ;
     cout<<"Enter Book Title : ";
@@ -76,6 +78,7 @@ void Admins::addBook()
     cin>>q ;
 
     book_rec.emplace_back(id, t, a, q, 0);
+    cout<<"New Book Added !"<<endl ;
 }
 
 void Admins::removeBook()
@@ -114,15 +117,18 @@ void Admins::removeBook()
 
 void Admins::addMember()
 {
+    int id=101 ;
+    if(!mem_rec.empty())
+        id=mem_rec.back().memberID + 1 ;
     string n,p ;
     cout<<"Enter a Name : ";
     cin.ignore();
     getline(cin, n);
     cout<<"Enter a Password : ";
     cin>>p ;
-    int id=mem_rec.back().memberID + 1 ;
 
     mem_rec.emplace_back(id, n, p);
+    cout<<"New Member Added !"<<endl ;
 }
 
 void Admins::removeMember()
@@ -179,6 +185,7 @@ void Admins::addAdmin()
     int id=adm_rec.back().adminID + 1 ;
 
     adm_rec.emplace_back(id, n, p);
+    cout<<"New Admin Added !"<<endl ;
 }
 
 void Admins::removeAdmin()
