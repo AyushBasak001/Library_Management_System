@@ -79,7 +79,7 @@ void Members::issueBook()
     {
         if(ib.member_ID==memberID)
         {
-            if((num++)==3)
+            if((++num)==3)
             {
                 cout<<"Cannot issue more than 3 books at a time !"<<endl ;
                 return ;
