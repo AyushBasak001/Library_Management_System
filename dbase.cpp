@@ -1,8 +1,5 @@
 #include "dbase.h"
 #include <sqlite3.h>
-#include <iostream>
-
-using namespace std;
 
 vector<Admins> adm_rec ;
 vector<Members> mem_rec ;
@@ -189,4 +186,3 @@ void Dbase::saveData() {
 
     sqlite3_close(db);
 }
-

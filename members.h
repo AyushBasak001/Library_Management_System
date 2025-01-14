@@ -1,23 +1,18 @@
 #ifndef MEMBERS_H
 #define MEMBERS_H
 #include <string>
-#include <iostream>
 #include <vector>
-
-using namespace std;
-
-class Dbase ;
 
 class Members
 {
 public:
     int memberID ;
-    string name ;
-    string password ;
-    vector<int> issuedBooks ;
+    std::string name ;
+    std::string password ;
+    std::vector<int> issuedBooks ;
 
-    Members(int id, const string& name, const string& pass);
-    void login(const string& name, const string& pass) ;
+    Members(int id, const std::string& name, const std::string& pass);
+    void login(const std::string& name, const std::string& pass) ;
     void operations() ;
     void listallbooks() ;
     void issueBook() ;

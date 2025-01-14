@@ -1,6 +1,4 @@
-#include "members.h"
 #include "dbase.h"
-#include <iostream>
 
 Members::Members(int id, const string& n, const string& pass)
     : memberID(id), name(n), password(pass) {}
@@ -39,11 +37,21 @@ void Members::operations()
         cout<<"1. Close\n2. View all Books\n3. View Issued Books\n4. Issue Book\n5. Return Book\nEnter Choice : " ;
         cin>>choice ;
 
+        // Handle invalid input (e.g., letters or special characters)
+        if (cin.fail())
+        {
+            cin.clear(); // Clear the error flag
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore invalid input in the buffer
+            cout << "Invalid input! Please enter a number between 1 and 5.\n";
+            continue; // Skip to the next iteration of the loop
+        }
+
         if(choice==1) return ;
         else if(choice==2) listallbooks();
         else if(choice==3) listissuedBooks();
         else if(choice==4) issueBook();
         else if(choice==5) returnBook();
+        else cout << "Invalid input! Please enter a number between 1 and 5"<<endl ;
 
     }
 }
@@ -92,7 +100,7 @@ void Members::issueBook()
             {
                 book.issued++;
                 isu_rec.emplace_back(memberID, bid);
-                cout<<"Successful operation"<<endl ;
+                cout<<"Book issued to you ! Happy reading !"<<endl ;
                 return;
             }
             else

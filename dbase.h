@@ -2,7 +2,8 @@
 #include "members.h"
 #include "admins.h"
 #include "issuedbooks.h"
-#include <vector>
+#include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -26,7 +27,5 @@ public:
     void saveData() ;
 
 };
-
-
 
 #endif // DBASE_H

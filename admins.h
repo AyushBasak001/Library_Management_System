@@ -1,22 +1,17 @@
 #ifndef ADMINS_H
 #define ADMINS_H
 #include <string>
-#include <iostream>
 #include <vector>
 
-using namespace std;
-
-class Dbase ;
-
 class Admins
-{  // declare data members as private after checking link
+{
 public:
     int adminID ;
-    string name ;
-    string password ;
+    std::string name ;
+    std::string password ;
 
-    Admins(int id, const string& name, const string& pass);
-    void login(const string& name, const string& pass) ;
+    Admins(int id, const std::string& name, const std::string& pass);
+    void login(const std::string& name, const std::string& pass) ;
 
     void operations() ;
 
@@ -31,8 +26,7 @@ public:
     void listallAdmins() ;
     void listallbooks() ;
 
-    void serchBooks() ;
-
+    void updateQty() ;
 };
 
 #endif // ADMINS_H

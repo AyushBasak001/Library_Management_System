@@ -1,10 +1,6 @@
 #ifndef ISSUEDBOOKS_H
 #define ISSUEDBOOKS_H
 
-using namespace std;
-
-class Dbase ;
-
 class IssuedBooks
 {
 public:

@@ -1,12 +1,7 @@
 #include "dbase.h"
-#include <iostream>
-
-using namespace std;
 
 int main()
 {
-
-
     Dbase library ;
     library.openLibrary();
 
@@ -17,6 +12,15 @@ int main()
         cout<< "1. Save and Close \n2. Admin Login \n3. Member Login\nEnter Choice : " ;
         cin >> choice ;
 
+        // Handle invalid input (e.g., letters or special characters)
+        if (cin.fail())
+        {
+            cin.clear(); // Clear the error flag
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore invalid input in the buffer
+            cout << "Invalid input! Please enter a number between 1 and 3.\n";
+            continue; // Skip to the next iteration of the loop
+        }
+
         if(choice==1)
         {
             library.closeLibrary();
@@ -26,9 +30,10 @@ int main()
         {
             string n,p ;
             cout<<"Enter Admin Name : ";
-            cin>>n ;
+            cin.ignore();
+            getline(cin, n);
             cout<<"Enter Password : ";
-            cin>>p ;
+            getline(cin, p);
             Admins admin(1,n,p) ;
             admin.login(n,p);
         }
@@ -36,11 +41,14 @@ int main()
         {
             string n,p ;
             cout<<"Enter Member Name : ";
-            cin>>n ;
+            cin.ignore();
+            getline(cin, n);
             cout<<"Enter Password : ";
-            cin>>p ;
+            getline(cin, p);
             Members member(1,n,p) ;
             member.login(n,p);
         }
+        else cout << "Invalid input! Please enter a number between 1 and 3"<<endl ;
+
     }
 }

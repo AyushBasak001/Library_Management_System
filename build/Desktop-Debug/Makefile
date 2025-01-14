@@ -344,10 +344,10 @@ compiler_clean:
 
 ####### Compile
 
-admins.o: ../../admins.cpp ../../admins.h \
-		../../dbase.h \
+admins.o: ../../admins.cpp ../../dbase.h \
 		../../books.h \
 		../../members.h \
+		../../admins.h \
 		../../issuedbooks.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o admins.o ../../admins.cpp
 
@@ -371,9 +371,9 @@ main.o: ../../main.cpp ../../dbase.h \
 		../../issuedbooks.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
-members.o: ../../members.cpp ../../members.h \
-		../../dbase.h \
+members.o: ../../members.cpp ../../dbase.h \
 		../../books.h \
+		../../members.h \
 		../../admins.h \
 		../../issuedbooks.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o members.o ../../members.cpp
